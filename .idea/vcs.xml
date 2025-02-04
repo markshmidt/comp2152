@@ -2,5 +2,10 @@
 <project version="4">
   <component name="VcsDirectoryMappings">
     <mapping directory="" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/comp2152_week04/first-contributions" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/javarush/hippodrome" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/javarush/project-maven" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/javarush/project-servlet" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/week03/first-contributions" vcs="Git" />
   </component>
 </project>

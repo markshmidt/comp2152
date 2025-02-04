@@ -1,0 +1,68 @@
+<project>
+    <modelVersion>4.0.0</modelVersion> <!-- Always use 4.0.0 -->
+    <groupId>com.example</groupId> <!-- Replace with your groupId -->
+    <artifactId>site-maven-plugin</artifactId> <!-- Replace with your artifactId -->
+    <version>1.0-SNAPSHOT</version> <!-- Replace with your version -->
+
+    <name>Site Maven Plugin</name>
+    <description>Site documentation for your Maven project</description>
+    <properties>
+        <github.global.server>github</github.global.server>
+        <github.maven-plugin>0.9</github.maven-plugin>
+    </properties>
+    <repositories>
+        <repository>
+            <id>[name-project]-mvn-repo</id> <!-- A unique id for the repository -->
+            <url>https://raw.github.com/[username]/[name-project]/mvn-repo/</url> <!-- URL for the repository -->
+            <snapshots>
+                <enabled>true</enabled> <!-- Enable snapshot versions -->
+                <updatePolicy>always</updatePolicy> <!-- Set update policy to always -->
+            </snapshots>
+        </repository>
+    </repositories>
+
+    <distributionManagement>
+        <repository>
+            <id>internal.repo</id>
+            <name>Temporary Staging Repository</name>
+            <url>file://${project.build.directory}/mvn-repo</url>
+        </repository>
+    </distributionManagement>
+
+    <build>
+        <plugins>
+            <plugin>
+                <artifactId>maven-deploy-plugin</artifactId>
+                <version>2.8.1</version>
+                <configuration>
+                    <altDeploymentRepository>
+                        internal.repo::default::file://${project.build.directory}/mvn-repo
+                    </altDeploymentRepository>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>com.github.github</groupId>
+                <artifactId>site-maven-plugin</artifactId>
+                <version>${github.maven-plugin}</version>
+                <configuration>
+                    <message>Maven artifacts for ${project.version}</message>
+                    <noJekyll>true</noJekyll>
+                    <outputDirectory>${project.build.directory}/mvn-repo</outputDirectory>
+                    <branch>refs/heads/mvn-repo</branch>
+                    <includes>**/*</includes>
+                    <repositoryName>SuperLibrary</repositoryName>
+                    <repositoryOwner>javarushu-student</repositoryOwner>
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>site</goal>
+                        </goals>
+                        <phase>deploy</phase>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>
