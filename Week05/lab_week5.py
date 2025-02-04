@@ -240,13 +240,4 @@ if not input_invalid:
     if not input_invalid:
         stars_display = "*" * num_stars
         # Lab 5 - Question 2:
-
-#Question 4:
-print("----------------------------------------------------")
-print("Roll for the second time")
-loot_options, belt = functions_lab05.collect_loot(loot_options, belt)
-belt.sort()
-print("Your belt: ", belt)
-
-#Question 5:
-
+        print("    |    Hero " + short_name + " gets <" + stars_display + "> starts")
