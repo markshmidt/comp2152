@@ -2,6 +2,7 @@
 <project version="4">
   <component name="VcsDirectoryMappings">
     <mapping directory="" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/assignments/comp2152" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/comp2152_week04/first-contributions" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/javarush/hippodrome" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/javarush/project-maven" vcs="Git" />
