@@ -97,9 +97,9 @@ def load_game():
     except FileNotFoundError:
         print("No previous game found. Starting fresh.")
 
-def check_system_info():
-    print(f"Operating System: {os.name}")
-    #print(f"Python Version: {platform.python_version()}")
+# def check_system_info():
+#     print(f"Operating System: {os.name}")
+#     #print(f"Python Version: {platform.python_version()}")
 
 
 # Lab 06 - Question 5b

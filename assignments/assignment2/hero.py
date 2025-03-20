@@ -43,3 +43,4 @@ class Hero:
 
 def __del__(self):
         print("The Hero object is being destroyed by the garbage collector")
+        super().__del__()
