@@ -1,29 +1,45 @@
 import random
 from character import Character
+from monster import Monster
 class Hero:
     def __init__(self):
         super().__init__()
+        self.combat_strength = random.randint(1, 6)
+        self.health_points = random.randint(1, 20)
 
-    def hero_attacks(self, monster):
-        print("Hero attacks Monster!")
-        monster.health_points -= self.combat_strength
-        print(f"Monster's health reduced to {monster.health_points}")
+    def attacks(self, monster):
+        def hero_attacks(combat_strength, m_health_points):
+            ascii_image = """
+                                        @@   @@ 
+                                        @    @  
+                                        @   @   
+                       @@@@@@          @@  @    
+                    @@       @@        @ @@     
+                   @%         @     @@@ @       
+                    @        @@     @@@@@     
+                       @@@@@        @@       
+                       @    @@@@                
+                  @@@ @@                        
+               @@     @                         
+           @@*       @                          
+           @        @@                          
+                   @@                                                    
+                 @   @@@@@@@                    
+                @            @                  
+              @              @                  
 
-    def __del__(self):
+          """
+            print(ascii_image)
+            print(f"    |    Hero's attack ({self.combat_strength}) ---> Monster ({monster.health_points})")
+
+            if self.combat_strength >= monster.health_points:
+                monster.health_points = 0
+                print("    |    You have killed the monster")
+            else:
+                monster.health_points -= self.combat_strength
+                print(f"    |    You have reduced the monster's health to: {monster.health_points}")
+
+            return monster.health_points
+
+def __del__(self):
         print("The Hero object is being destroyed by the garbage collector")
-
-    @property
-    def combat_strength(self):
-        return self.combat_strength
-
-    @property
-    def health_points(self):
-        return self.health_points
-
-    @combat_strength.setter
-    def combat_strength(self, combat_strength):
-        self._combat_strength = combat_strength
-
-    @health_points.setter
-    def health_points(self, health_points):
-        self._health_points = health_points
