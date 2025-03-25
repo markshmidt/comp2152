@@ -213,7 +213,14 @@ print(f"num_dream_lvls: {num_dream_lvls}")
 # Loop while the monster and the player are alive. Call fight sequence functions
 print("    ------------------------------------------------------------------")
 print("    |    You meet the monster. FIGHT!!")
+
+print(f"DEBUG: Hero Health = {hero.health_points}, Monster Health = {monster.health_points}")
+
+if hero.health_points is None or monster.health_points is None:
+    raise ValueError("Health points not initialized correctly! Check constructor.")
 while monster.health_points > 0 and hero.health_points > 0:
+    if hero.health_points is None or monster.health_points is None:
+        raise ValueError("Health points not initialized correctly! Check constructor.")
     # Fight Sequence
     print("    |", end="    ")
 
@@ -224,13 +231,16 @@ while monster.health_points > 0 and hero.health_points > 0:
         print("    |", end="    ")
         input("You strike (Press enter)")
         monster.health_points = hero.attacks(monster)
+        if monster.health_points is not None:
+            monster.health_points = max(0, monster.health_points)
         if monster.health_points == 0:
             num_stars = 3
+            break
         else:
             print("    |", end="    ")
             print("------------------------------------------------------------------")
             input("    |    The monster strikes (Press enter)!!!")
-            hero.health_points = monster.attacks(hero)
+            hero.health_points = max(0, monster.attacks(hero))
             if hero.health_points == 0:
                 num_stars = 1
             else:
@@ -238,14 +248,18 @@ while monster.health_points > 0 and hero.health_points > 0:
     else:
         print("    |", end="    ")
         input("The Monster strikes (Press enter)")
-        hero.health_points = monster.attacks(hero)
+        new_hero_health = monster.attacks(hero)
+        if new_hero_health is None:
+            raise ValueError("monster.attacks(hero) returned None!")
+
+        hero.health_points = max(0, new_hero_health)
         if hero.health_points == 0:
             num_stars = 1
         else:
             print("    |", end="    ")
             print("------------------------------------------------------------------")
             input("The hero strikes!! (Press enter)")
-            monster.health_points = hero.attacks(monster)
+            hero.health_points = max(0, monster.attacks(hero))
             if monster.health_points == 0:
                 num_stars = 3
             else:

@@ -29,6 +29,7 @@ class Monster:
         if self.combat_strength >= hero.health_points:
             hero.health_points = 0
             print("    |    Player is dead")
+
         else:
             hero.health_points -= self.combat_strength
             print(f"    |    The monster has reduced Player's health to: {hero.health_points}")
